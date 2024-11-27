@@ -5,10 +5,12 @@ const fs = require('fs');
 const path = require('path');
 const multer = require('multer');
 const cors = require("cors");
+require('dotenv').config();
 
 // Setup
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
+
 app.use(cors());
 
 // Multer setup for handling multipart/form-data
@@ -21,7 +23,10 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+const upload = multer({
+  dest: path.join(__dirname, "uploads") // Ensure the 'uploads' folder exists in the project root
+});
+
 
 // Route to upload image and call Plate Recognizer API
 app.post("/upload-image", upload.single("upload"), async (req, res) => {
@@ -34,7 +39,7 @@ app.post("/upload-image", upload.single("upload"), async (req, res) => {
       const response = await fetch("https://api.platerecognizer.com/v1/plate-reader/", {
         method: "POST",
         headers: {
-          Authorization: "Token a0cfbcf793ba3d11ae5eeb008c7f75f92bb0d813", // Use your API token
+          Authorization: `Token ${process.env.PLATE_RECOGNIZER_API_TOKEN}`, // Use your API token
         },
         body: formData,
       });
@@ -47,7 +52,7 @@ app.post("/upload-image", upload.single("upload"), async (req, res) => {
       res.status(500).send("Server error");
     }
   });
-
+console.log(process.env.PLATE_RECOGNIZER_API_TOKEN+"   "+ process.env.PORT)
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
