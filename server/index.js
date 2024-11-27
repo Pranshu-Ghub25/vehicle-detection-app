@@ -27,7 +27,6 @@ const upload = multer({
   dest: path.join(__dirname, "uploads") // Ensure the 'uploads' folder exists in the project root
 });
 
-
 // Route to upload image and call Plate Recognizer API
 app.post("/upload-image", upload.single("upload"), async (req, res) => {
     try {
@@ -45,14 +44,21 @@ app.post("/upload-image", upload.single("upload"), async (req, res) => {
       });
   
       const data = await response.json();
-      fs.unlinkSync(imagePath); // Clean up the uploaded file
       res.json(data); // Send the recognition results back to the frontend
+  
+      // Wait for 2 minutes before deleting the file
+      setTimeout(() => {
+        fs.unlinkSync(imagePath); // Clean up the uploaded file after 2 minutes
+        console.log(`Deleted file: ${imagePath}`);
+      }, 2 * 60 * 1000); // 2 minutes in milliseconds
     } catch (error) {
       console.error("Error:", error);
       res.status(500).send("Server error");
     }
   });
-console.log(process.env.PLATE_RECOGNIZER_API_TOKEN+"   "+ process.env.PORT)
+
+console.log(process.env.PLATE_RECOGNIZER_API_TOKEN + "   " + process.env.PORT);
+
 // Start server
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
