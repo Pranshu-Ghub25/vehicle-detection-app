@@ -17,10 +17,10 @@ function LicensePlateRecognizer() {
     formData.append("upload", image); // Append image to form data
 
     try {
-      const response = await fetch("http://localhost:5000/upload-image", { // Backend endpoint
+      const response = await fetch("https://vehicle-detection-app-3j4y.onrender.com/upload-image", { // Backend endpoint
         method: "POST",
         headers: {
-          "Authorization": "Token a0cfbcf793ba3d11ae5eeb008c7f75f92bb0d813", // Use your actual API Token here
+          "Authorization": `Token ${import.meta.env.VITE_API_KEY}`, // Use your actual API Token here
         },
         body: formData,
       });
@@ -38,6 +38,7 @@ function LicensePlateRecognizer() {
       console.error("Error:", error);
     }
   };
+
 
   // Render table for the result data
   const renderLicensePlateDetails = () => {
