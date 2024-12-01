@@ -6,14 +6,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';import './App.cs
 // import PlateRecognizerComponent from './components/PlateRecognizerComponent'
 import LicensePlateRecognizer from './components/LicensePlateRecognizer'
 import OtpAuth from './components/OtpAuth'
-<<<<<<< HEAD
+
 import QrCodeGenerator from './components/QrCodeGenerator';
 import QRReader from './components/QrReader';
-=======
+
 
 import QrCodeGenerator from './components/QrCodeGenerator';
 
->>>>>>> fc32e6bfca5e0049fb331007fd2cae59b8bd4d3d
+
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('LicensePlateRecognizer');
