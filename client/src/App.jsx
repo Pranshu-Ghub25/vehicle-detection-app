@@ -6,10 +6,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';import './App.cs
 // import PlateRecognizerComponent from './components/PlateRecognizerComponent'
 import LicensePlateRecognizer from './components/LicensePlateRecognizer'
 import OtpAuth from './components/OtpAuth'
-<<<<<<< HEAD
 import QrCodeGenerator from './components/QrCodeGenerator';
-=======
->>>>>>> dab3cd21de5437ec20deea70e309b9bbbd42672f
+import QRReader from './components/QrReader';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState('LicensePlateRecognizer');
@@ -36,6 +34,12 @@ function App() {
         >
          Qr Code Generator
         </button>
+        <button
+          onClick={() => setActiveComponent('QrCodeReader')}
+          className="btn"
+        >
+         Qr Code Reader
+        </button>
       </div>
 
       {/* Render Components Based on Active State */}
@@ -43,6 +47,7 @@ function App() {
         {activeComponent === 'LicensePlateRecognizer' && <LicensePlateRecognizer />}
         {activeComponent === 'OtpAuth' && <OtpAuth />}
         {activeComponent === 'QrCode' && <QrCodeGenerator/>}
+        {activeComponent === 'QrCodeReader' && <QRReader/>}
       </div>
     </div>
   );
