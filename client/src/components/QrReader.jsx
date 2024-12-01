@@ -14,14 +14,20 @@ function QRReader() {
     console.error(err);
   };
 
+  const previewStyle = {
+    height: 240,
+    width: 320,
+  };
+
   return (
-    <div>
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
       <h1>QR Code Reader</h1>
       <QrScanner
         delay={300}
         onError={handleError}
         onScan={handleScan}
-        style={{ width: "300px" }}
+        style={previewStyle}
+        facingMode="environment" // Use back camera
       />
       {scannedData && (
         <div>
