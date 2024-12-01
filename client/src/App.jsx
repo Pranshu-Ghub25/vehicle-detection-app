@@ -11,7 +11,6 @@ import QrCodeGenerator from './components/QrCodeGenerator';
 import QRReader from './components/QrReader';
 
 
-import QrCodeGenerator from './components/QrCodeGenerator';
 
 
 
