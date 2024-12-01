@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';import './App.cs
 // import LicensePlateRecognition from './components/LicensePlateRecognition'
 // import PlateRecognizerComponent from './components/PlateRecognizerComponent'
 import LicensePlateRecognizer from './components/LicensePlateRecognizer'
-import OtpAuth from './components/OtpAUth'
+import OtpAuth from './components/OtpAuth'
 
 function App() {
 
