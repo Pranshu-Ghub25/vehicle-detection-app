@@ -27,7 +27,7 @@ function QRReader() {
         onError={handleError}
         onScan={handleScan}
         style={previewStyle}
-        facingMode="environment" // Use back camera
+        facingMode="rear" // Use back camera
       />
       {scannedData && (
         <div>
