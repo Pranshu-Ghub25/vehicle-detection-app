@@ -16,7 +16,7 @@ const OtpAuth = () => {
 
         // Send the JSON URL to your backend
         axios
-          .post('http://localhost:5000/api/verify-phone', { user_json_url })
+          .post('https://vehicle-detection-app-3j4y.onrender.com/api/verify-phone', { user_json_url })
           .then((response) => {
             alert(`Phone verification successful! Welcome, ${response.data.user_first_name}!`);
           })

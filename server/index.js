@@ -6,6 +6,8 @@ const path = require('path');
 const multer = require('multer');
 const cors = require("cors");
 const bodyParser = require('body-parser');
+const https=require("https")
+const QRCode = require('qrcode');
 
 require('dotenv').config();
 
@@ -62,6 +64,25 @@ app.post("/upload-image", upload.single("upload"), async (req, res) => {
 
 
   //sms auth
+  // const QRCode = require('qrcode');
+
+  
+  // Route to generate QR code
+  app.post('/generate-qr', async (req, res) => {
+    const { text } = req.body;
+  
+    if (!text) {
+      return res.status(400).json({ error: 'Text is required' });
+    }
+  
+    try {
+      const qrCodeData = await QRCode.toDataURL(text); // Generate QR code as a data URL
+      res.status(200).json({ qrCodeData });
+    } catch (error) {
+      res.status(500).json({ error: 'Failed to generate QR code' });
+    }
+  });
+  
 
  
 // API endpoint to handle phone verification
